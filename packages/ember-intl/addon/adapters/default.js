@@ -38,7 +38,6 @@ const DefaultIntlAdapter = Ember.Object.extend({
 
   has(localeName, translationKey) {
     const translations = this.translationsFor(localeName);
-
     if (translations) {
       return translations.has(translationKey);
     }
@@ -50,15 +49,20 @@ const DefaultIntlAdapter = Ember.Object.extend({
     const len = locales.length;
     let i = 0;
 
-    debugger;
+    const baseLocale = locales[0];
 
     for (; i < len; i++) {
       const locale = locales[i];
       const translations = this.translationsFor(locale);
 
       if (translations && translations.has(translationKey)) {
-        return translations.getValue(translationKey) + '@@@pending test@@@';
+        if (locale !== baseLocale) {
+          return translations.getValue(translationKey) + '-' + '*Translation Pending*';
+        } else {
+          return translations.getValue(translationKey);
+        }
       }
+
     }
   }
 });

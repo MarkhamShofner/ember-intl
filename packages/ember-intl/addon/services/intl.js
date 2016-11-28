@@ -196,10 +196,10 @@ const IntlService = Service.extend(Evented, {
     if (typeof translation === 'undefined') {
       const missingMessage = getOwner(this).resolveRegistration('util:intl/missing-message');
 
-      return missingMessage.call(this, key, locales) + '***Missing Msg***';
+      return missingMessage.call(this, key, locales);
     }
 
-    return translation + '**translated***';
+    return translation;
   }
 });
 
