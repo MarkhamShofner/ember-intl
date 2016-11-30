@@ -58,7 +58,8 @@ const DefaultIntlAdapter = Ember.Object.extend({
 
       if (translations && translations.has(translationKey)) {
         if (locale !== chosenLocale) {
-          return translations.getValue(translationKey) + '*Translation Pending*';
+          // marker for fallback translations
+          return '^*' + translations.getValue(translationKey) + '*^';
         } else {
           return translations.getValue(translationKey);
         }
