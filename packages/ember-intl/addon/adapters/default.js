@@ -50,14 +50,14 @@ const DefaultIntlAdapter = Ember.Object.extend({
     const len = locales.length;
     let i = 0;
 
-    const baseLocale = locales[0];
+    const chosenLocale = locales[0];
 
     for (; i < len; i++) {
       const locale = locales[i];
       const translations = this.translationsFor(locale);
 
       if (translations && translations.has(translationKey)) {
-        if (locale !== baseLocale) {
+        if (locale !== chosenLocale) {
           return translations.getValue(translationKey) + '*Translation Pending*';
         } else {
           return translations.getValue(translationKey);
